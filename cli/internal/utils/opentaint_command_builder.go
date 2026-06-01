@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"path/filepath"
 	"sort"
+	"strconv"
 	"strings"
 	"time"
 )
@@ -105,16 +106,14 @@ func (cb *OpentaintCommandBuilder) WithTimeout(timeout time.Duration) *Opentaint
 	return cb
 }
 
-// WithRuleset sets the ruleset path flag.
+// WithRuleset sets the ruleset path flag. Skips when rulesets is solely the
+// default "builtin"; otherwise replaces any previously-set ruleset values
+// with a copy of rulesets.
 func (cb *OpentaintCommandBuilder) WithRuleset(rulesets []string) *OpentaintCommandBuilder {
 	if len(rulesets) == 1 && rulesets[0] == "builtin" {
 		return cb
 	}
-	cb.arrayFlags["ruleset"] = []string{}
-	for _, ruleset := range rulesets {
-		rules := cb.arrayFlags["ruleset"]
-		cb.arrayFlags["ruleset"] = append(rules, ruleset)
-	}
+	cb.arrayFlags["ruleset"] = append([]string(nil), rulesets...)
 	return cb
 }
 
@@ -149,6 +148,79 @@ func (cb *OpentaintCommandBuilder) WithVerboseFlow() *OpentaintCommandBuilder {
 // WithShowCodeSnippets sets the show-code-snippets flag.
 func (cb *OpentaintCommandBuilder) WithShowCodeSnippets() *OpentaintCommandBuilder {
 	cb.boolFlags["show-code-snippets"] = true
+	return cb
+}
+
+// WithPath adds repeatable --path glob filters.
+func (cb *OpentaintCommandBuilder) WithPath(paths []string) *OpentaintCommandBuilder {
+	for _, p := range paths {
+		if p != "" {
+			cb.arrayFlags["path"] = append(cb.arrayFlags["path"], p)
+		}
+	}
+	return cb
+}
+
+// WithSeverity adds repeatable --severity filters.
+func (cb *OpentaintCommandBuilder) WithSeverity(severities []string) *OpentaintCommandBuilder {
+	for _, s := range severities {
+		if s != "" {
+			cb.arrayFlags["severity"] = append(cb.arrayFlags["severity"], s)
+		}
+	}
+	return cb
+}
+
+// WithRuleID adds repeatable --rule-id filters.
+func (cb *OpentaintCommandBuilder) WithRuleID(ruleIDs []string) *OpentaintCommandBuilder {
+	for _, id := range ruleIDs {
+		if id != "" {
+			cb.arrayFlags["rule-id"] = append(cb.arrayFlags["rule-id"], id)
+		}
+	}
+	return cb
+}
+
+// WithPartialFingerprint adds repeatable --partial-fingerprint filters.
+func (cb *OpentaintCommandBuilder) WithPartialFingerprint(fingerprints []string) *OpentaintCommandBuilder {
+	for _, f := range fingerprints {
+		if f != "" {
+			cb.arrayFlags["partial-fingerprint"] = append(cb.arrayFlags["partial-fingerprint"], f)
+		}
+	}
+	return cb
+}
+
+// WithPartialFingerprintKey sets the --partial-fingerprint-key flag.
+func (cb *OpentaintCommandBuilder) WithPartialFingerprintKey(key string) *OpentaintCommandBuilder {
+	if key != "" {
+		cb.flags["partial-fingerprint-key"] = key
+	}
+	return cb
+}
+
+// WithMaxNestingLevel sets the --max-nesting-level flag when level >= 0.
+func (cb *OpentaintCommandBuilder) WithMaxNestingLevel(level int) *OpentaintCommandBuilder {
+	if level >= 0 {
+		cb.flags["max-nesting-level"] = strconv.Itoa(level)
+	}
+	return cb
+}
+
+// WithGroupBy sets the --group-by flag for non-default dimensions.
+func (cb *OpentaintCommandBuilder) WithGroupBy(dimension string) *OpentaintCommandBuilder {
+	if dimension != "" && dimension != "file-path" {
+		cb.flags["group-by"] = dimension
+	}
+	return cb
+}
+
+// WithCodeFlow sets the --code-flow flag ("all" or a 1-based integer as
+// a string). Empty values are omitted.
+func (cb *OpentaintCommandBuilder) WithCodeFlow(value string) *OpentaintCommandBuilder {
+	if value != "" {
+		cb.flags["code-flow"] = value
+	}
 	return cb
 }
 

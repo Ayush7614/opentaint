@@ -304,3 +304,70 @@ func TestCopyFlagsFromDoesNotMutateSource(t *testing.T) {
 func contains(s, substr string) bool {
 	return strings.Contains(s, substr)
 }
+
+func TestSummaryFilterFlags(t *testing.T) {
+	cmd := NewSummaryCommand("/r.sarif").
+		WithShowFindings().
+		WithPath([]string{"src/main/**"}).
+		WithSeverity([]string{"error"}).
+		WithRuleID([]string{"sql-injection"}).
+		WithPartialFingerprint([]string{"abc123"}).
+		WithPartialFingerprintKey("vulnerabilitySourceSinkHash/v1").
+		WithMaxNestingLevel(3).
+		WithGroupBy("severity").
+		Build()
+
+	for _, want := range []string{
+		"opentaint summary /r.sarif",
+		"--path src/main/**",
+		"--severity error",
+		"--rule-id sql-injection",
+		"--partial-fingerprint abc123",
+		"--partial-fingerprint-key vulnerabilitySourceSinkHash/v1",
+		"--max-nesting-level 3",
+		"--group-by severity",
+		"--show-findings",
+	} {
+		if !contains(cmd, want) {
+			t.Errorf("command %q should contain %q", cmd, want)
+		}
+	}
+}
+
+func TestSummaryFilterFlagsOmitDefaults(t *testing.T) {
+	cmd := NewSummaryCommand("/r.sarif").
+		WithMaxNestingLevel(-1).
+		WithGroupBy("file-path").
+		WithGroupBy("").
+		WithPath(nil).
+		Build()
+	if cmd != "opentaint summary /r.sarif" {
+		t.Errorf("defaults should be omitted, got %q", cmd)
+	}
+}
+
+func TestSummaryRepeatableFlagMultiValue(t *testing.T) {
+	cmd := NewSummaryCommand("/r.sarif").
+		WithPath([]string{"src/**", "test/**"}).
+		Build()
+	if !contains(cmd, "--path src/**") || !contains(cmd, "--path test/**") {
+		t.Errorf("expected both --path values, got %q", cmd)
+	}
+}
+
+func TestSummaryWithCodeFlow(t *testing.T) {
+	cmd := NewSummaryCommand("/r.sarif").WithCodeFlow("all").Build()
+	if !contains(cmd, "--code-flow all") {
+		t.Errorf("expected --code-flow all in command, got %q", cmd)
+	}
+
+	cmd = NewSummaryCommand("/r.sarif").WithCodeFlow("2").Build()
+	if !contains(cmd, "--code-flow 2") {
+		t.Errorf("expected --code-flow 2 in command, got %q", cmd)
+	}
+
+	cmd = NewSummaryCommand("/r.sarif").WithCodeFlow("").Build()
+	if cmd != "opentaint summary /r.sarif" {
+		t.Errorf("empty --code-flow should be omitted, got %q", cmd)
+	}
+}
