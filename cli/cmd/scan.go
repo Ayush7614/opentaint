@@ -226,7 +226,7 @@ func scan(cmd *cobra.Command) {
 
 	sarifReportName := filepath.Base(absSarifReportPath)
 
-	localVersion := globals.Config.Analyzer.Version
+	localVersion := utils.ArtifactDisplayVersion(globals.ArtifactByKind("analyzer"), globals.Config.Analyzer.JarPath)
 	localSemanticVersion := version.GetVersion()
 
 	var sourceRoot string
@@ -250,7 +250,7 @@ func scan(cmd *cobra.Command) {
 	}
 
 	// Display scan information in tree format
-	printScanInfo(cmd, cfg, absSemgrepRuleLoadTracePath, absUserProjectRoot, absRuleSetPaths)
+	printScanInfo(cmd, cfg, absSemgrepRuleLoadTracePath, absUserProjectRoot, absRuleSetPaths, localVersion)
 
 	var nonBuiltinRulesetPaths []string
 	for _, r := range absRuleSetPaths {
@@ -544,26 +544,28 @@ func resolveScanConfig(absUserProjectRoot string) scanConfig {
 	}
 }
 
-func printScanInfo(cmd *cobra.Command, cfg scanConfig, absSemgrepRuleLoadTracePath string, absUserProjectRoot string, absRuleSetPaths []RulesetType) {
+func printScanInfo(cmd *cobra.Command, cfg scanConfig, absSemgrepRuleLoadTracePath string, absUserProjectRoot string, absRuleSetPaths []RulesetType, analyzerVersion string) {
 	sb := out.Section(cfg.mode.String())
 	addConfigFields(cmd, sb)
 	if globals.Config.Output.Debug {
-		sb.Field("Rule load trace", absSemgrepRuleLoadTracePath)
+		sb.FieldNode("Rule load trace", absSemgrepRuleLoadTracePath)
 		sb.Line()
 	}
 	if cfg.needsCompilation {
-		sb.Field("Project", absUserProjectRoot)
+		sb.FieldNode("Project", absUserProjectRoot)
 		if cfg.projectCachePath != "" {
-			sb.Field("Project model", cfg.absProjectModel)
+			sb.FieldNode("Project model", cfg.absProjectModel)
 		}
+		sb.FieldNode("Autobuilder", utils.ArtifactDisplayVersion(globals.ArtifactByKind("autobuilder"), globals.Config.Autobuilder.JarPath))
 	} else {
-		sb.Field("Project model", cfg.absProjectModel)
+		sb.FieldNode("Project model", cfg.absProjectModel)
 	}
+	sb.FieldNode("Analyzer", analyzerVersion)
 	for _, r := range absRuleSetPaths {
 		if r.Builtin {
-			sb.Field("Bundled ruleset", globals.Config.Rules.Version)
+			sb.FieldNode("Bundled ruleset", utils.ArtifactDisplayVersion(globals.ArtifactByKind("rules"), ""))
 		} else {
-			sb.Field("User ruleset", r.Path)
+			sb.FieldNode("User ruleset", r.Path)
 		}
 	}
 	sb.Render()
