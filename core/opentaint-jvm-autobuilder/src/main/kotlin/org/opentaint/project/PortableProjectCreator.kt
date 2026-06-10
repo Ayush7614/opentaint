@@ -2,8 +2,10 @@ package org.opentaint.project
 
 import mu.KLogging
 import java.nio.file.Path
+import kotlin.io.path.ExperimentalPathApi
 import kotlin.io.path.copyTo
 import kotlin.io.path.createDirectories
+import kotlin.io.path.deleteRecursively
 import kotlin.io.path.exists
 import kotlin.io.path.forEachDirectoryEntry
 import kotlin.io.path.isDirectory
@@ -11,8 +13,7 @@ import kotlin.io.path.name
 import kotlin.io.path.relativeTo
 
 class PortableProjectCreator(
-    private val portableProjectPath: Path,
-    private val rootProject: JavaProject
+    private val portableProjectRootPath: Path
 ) {
     sealed interface PortAction {
         data class Copy(val dst: Path) : PortAction
@@ -63,13 +64,58 @@ class PortableProjectCreator(
         }
     }
 
-    fun create() {
+    fun create(topLevelProject: Project) {
+        val portableJava = topLevelProject.javaProjects.mapIndexed { index, project ->
+            val projectPath = portableProjectRootPath.resolve("java_$index")
+            createJava(project, projectPath) ?: return
+        }
+
+        val portableGo = topLevelProject.goProjects.mapIndexed { index, project ->
+            val projectPath = portableProjectRootPath.resolve("go_$index")
+            createGo(project, projectPath) ?: return
+        }
+
+        val portableProject = Project(
+            goProjects = portableGo,
+            javaProjects = portableJava,
+        )
+
+        portableProject.dump(portableProjectRootPath.resolve("project.yaml"))
+    }
+
+    fun create(javaOnlyProject: JavaProject) {
+        val portableJava = createJava(javaOnlyProject, portableProjectRootPath)
+            ?: return
+
+        portableJava.dump(portableProjectRootPath.resolve("project.yaml"))
+    }
+
+    private fun createGo(rootProject: GoProject, portableProjectPath: Path): GoProject? {
         logger.info { "Start portable project creation" }
 
         if (portableProjectPath.exists()) {
             if (!portableProjectPath.isDirectory() || portableProjectPath.isNotEmpty()) {
-                logger.error { "Portable project path exists" }
-                return
+                logger.warn { "Portable project path exists: overwrite $portableProjectPath" }
+                portableProjectPath.cleanupDirectory() ?: return null
+            }
+        }
+
+        portableProjectPath.createDirectories()
+
+        copy(rootProject.projectDir, portableProjectPath)
+
+        val portableProject = GoProject(portableProjectPath)
+        val relativeProject = portableProject.relativeTo(portableProjectRootPath)
+        return relativeProject
+    }
+
+    private fun createJava(rootProject: JavaProject, portableProjectPath: Path): JavaProject? {
+        logger.info { "Start portable project creation" }
+
+        if (portableProjectPath.exists()) {
+            if (!portableProjectPath.isDirectory() || portableProjectPath.isNotEmpty()) {
+                logger.warn { "Portable project path exists: overwrite $portableProjectPath" }
+                portableProjectPath.cleanupDirectory() ?: return null
             }
         }
 
@@ -85,9 +131,8 @@ class PortableProjectCreator(
         rootProject.sourceRoot?.let { copyDirectory(it, ctx.sources) }
 
         val portableProject = create(ctx, rootProject)
-        val relativeProject = portableProject.relativeTo(portableProjectPath)
-
-        relativeProject.dump(portableProjectPath.resolve("project.yaml"))
+        val relativeProject = portableProject.relativeTo(portableProjectRootPath)
+        return relativeProject
     }
 
     private fun create(ctx: ProjectPortContext, project: JavaProject): JavaProject = JavaProject(
@@ -145,6 +190,14 @@ class PortableProjectCreator(
     private fun copyDirectory(from: Path, dst: Path) {
         dst.createDirectories()
         from.copyDirRecursivelyTo(dst)
+    }
+
+    @OptIn(ExperimentalPathApi::class)
+    private fun Path.cleanupDirectory(): Unit? = try {
+        deleteRecursively()
+    } catch (e: Exception) {
+        logger.error("Directory $this cleanup failed", e)
+        null
     }
 
     companion object {
