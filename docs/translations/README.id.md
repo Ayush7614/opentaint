@@ -6,17 +6,17 @@
   </picture>
 </p>
 
-<h3 align="center">Den åpen kildekode taint-analysemotoren for AI-æraen</h3>
+<h3 align="center">Mesin analisis taint sumber terbuka untuk era AI</h3>
 
 <p align="center">
-  Formell taint-analyse for applikasjonssikkerhet — finner det AST-mønstergjenkjenningsmotorer overser, lar LLM-agenter omsette sårbarheter til regler, skalerer der ingen av dem klarer det alene.
+  Analisis taint formal untuk keamanan aplikasi — menemukan apa yang terlewat oleh pencocok pola AST, memungkinkan agen LLM menerapkan kerentanan sebagai aturan, dan memperluas skala di tempat keduanya tidak mampu sendiri.
 </p>
 
 <p align="center">
-  <a href="https://github.com/seqra/opentaint/releases"><img src="https://img.shields.io/github/release/seqra/opentaint.svg" alt="GitHub-utgivelse"></a>
+  <a href="https://github.com/seqra/opentaint/releases"><img src="https://img.shields.io/github/release/seqra/opentaint.svg" alt="GitHub release"></a>
   <a href="https://goreportcard.com/report/github.com/seqra/opentaint/cli"><img src="https://goreportcard.com/badge/github.com/seqra/opentaint/cli" alt="Go Report Card"></a>
-  <a href="../../LICENSE.md"><img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" alt="Lisens: Apache 2.0"></a>
-  <a href="https://golang.org/"><img src="https://img.shields.io/badge/Go-1.25+-00ADD8?logo=go" alt="Go-versjon"></a>
+  <a href="../../LICENSE.md"><img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" alt="License: Apache 2.0"></a>
+  <a href="https://golang.org/"><img src="https://img.shields.io/badge/Go-1.25+-00ADD8?logo=go" alt="Go Version"></a>
   <a href="https://discord.gg/6BXDfbP4p9"><img src="https://img.shields.io/discord/1403357427176575036?logo=discord&label=Discord" alt="Discord"></a>
 </p>
 
@@ -30,13 +30,13 @@
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="../../public/opentaint-demo-light.gif">
   <source media="(prefers-color-scheme: light)" srcset="../../public/opentaint-demo-dark.gif">
-  <img src="../../public/opentaint-demo-dark.gif" alt="OpenTaint sammendragsutdata">
+  <img src="../../public/opentaint-demo-dark.gif" alt="Demo analisis taint OpenTaint">
 </picture>
 </a>
 </a>
 </p>
 
-<p align="center"><b>Støttede teknologier og integrasjoner</b></p>
+<p align="center"><b>Teknologi dan integrasi yang didukung</b></p>
 <p align="center">
   <img src="../../logos/java-logo.svg" alt="Java" height="60">&nbsp;&nbsp;&nbsp;&nbsp;
   <img src="../../logos/kotlin-logo.svg" alt="Kotlin" height="60">&nbsp;&nbsp;&nbsp;&nbsp;
@@ -49,9 +49,9 @@
   <img src="../../logos/gitlab-logo.svg" alt="GitLab" height="60">
 </p>
 
-<p align="center"><i>Den mest grundige taint-analysemotoren for Spring-apper</i></p>
+<p align="center"><i>Mesin analisis taint paling menyeluruh untuk aplikasi Spring</i></p>
 
-<p align="center"><b>Veikart</b></p>
+<p align="center"><b>Peta jalan</b></p>
 <p align="center">
   <img src="../../logos/python-logo.svg" alt="Python" height="60">&nbsp;&nbsp;&nbsp;&nbsp;
   <img src="../../logos/go-logo.svg" alt="Go" height="60">&nbsp;&nbsp;&nbsp;&nbsp;
@@ -62,40 +62,40 @@
 
 <div align="center">
 <details>
-  <summary><b>Flere skjermbilder</b></summary>
+  <summary><b>Tangkapan layar lainnya</b></summary>
   <p align="center">
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="../../public/opentaint-frame-light-1.png">
       <source media="(prefers-color-scheme: light)" srcset="../../public/opentaint-frame-dark-1.png">
-      <img src="../../public/opentaint-frame-dark-1.png" alt="OpenTaint skanningsutdata">
+      <img src="../../public/opentaint-frame-dark-1.png" alt="Output pemindaian OpenTaint">
     </picture>
   </p>
   <p align="center">
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="../../public/opentaint-frame-light-2.png">
       <source media="(prefers-color-scheme: light)" srcset="../../public/opentaint-frame-dark-2.png">
-      <img src="../../public/opentaint-frame-dark-2.png" alt="OpenTaint sammendragsutdata">
+      <img src="../../public/opentaint-frame-dark-2.png" alt="Output ringkasan OpenTaint">
     </picture>
   </p>
   <p align="center">
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="../../public/opentaint-frame-light-3.png">
       <source media="(prefers-color-scheme: light)" srcset="../../public/opentaint-frame-dark-3.png">
-      <img src="../../public/opentaint-frame-dark-3.png" alt="OpenTaint sammendragsutdata">
+      <img src="../../public/opentaint-frame-dark-3.png" alt="Output ringkasan OpenTaint">
     </picture>
   </p>
   <p align="center">
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="../../public/opentaint-frame-light-4.png">
       <source media="(prefers-color-scheme: light)" srcset="../../public/opentaint-frame-dark-4.png">
-      <img src="../../public/opentaint-frame-dark-4.png" alt="OpenTaint sammendragsutdata">
+      <img src="../../public/opentaint-frame-dark-4.png" alt="Output ringkasan OpenTaint">
     </picture>
   </p>
   <p align="center">
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="../../public/opentaint-frame-light-5.png">
       <source media="(prefers-color-scheme: light)" srcset="../../public/opentaint-frame-dark-5.png">
-      <img src="../../public/opentaint-frame-dark-5.png" alt="OpenTaint sammendragsutdata">
+      <img src="../../public/opentaint-frame-dark-5.png" alt="Output ringkasan OpenTaint">
     </picture>
   </p>
 </details>
@@ -103,93 +103,93 @@
 
 ---
 
-## Hvorfor OpenTaint?
+## Mengapa OpenTaint?
 
-> OpenTaint er et åpen kildekode-alternativ til *Semgrep Pro* og *CodeQL* — en formell inter-prosedyrell taint-motor du kan tilpasse og selv hoste, bygget slik at AI-agenter driver sikkerhetsanalysen din uten å brenne tokens på hver eneste skanning.
+> OpenTaint adalah alternatif sumber terbuka untuk *Semgrep Pro* dan *CodeQL* — mesin taint inter-prosedural formal yang dapat Anda sesuaikan dan host sendiri, dibangun agar agen AI menggerakkan analisis keamanan Anda tanpa menghabiskan token pada setiap pemindaian.
 
-AI genererer produksjonskode raskere enn sikkerhetsteam klarer å holde følge med, og de to typene verktøy som er laget for å fange det den gjør feil, tvinger hver sin dårlige avveining på deg:
+AI menghasilkan kode produksi lebih cepat daripada kemampuan tim keamanan untuk mengikutinya, dan kedua jenis alat yang dibuat untuk menangkap kesalahan AI masing-masing memaksa kompromi yang buruk:
 
-- **AST-mønstergjenkjennere** (Semgrep OSS, ast-grep, lintere) er gratis og raske, men de matcher syntaks, ikke dataflyt — upålitelig input som krysser en funksjonsgrense eller et persistenslag glipper rett forbi. Den dypere, inter-prosedyrelle analysen som *faktisk* fanger den, har lenge vært innelåst i proprietære verktøy.
-- **LLM-sikkerhetsagenter** finner det mønstergjenkjennere overser, men de leser koden din på nytt ved hver kjøring. Tokens hoper seg opp for hver fil, hver commit, hver CI-bygging — og en probabilistisk modell kan fremdeles ikke love at den fanget opp alt.
+- **Pencocok pola AST** (Semgrep OSS, ast-grep, linter) gratis dan cepat, tetapi mereka mencocokkan sintaks, bukan aliran data — input tidak tepercaya yang melewati batas fungsi atau lapisan persistensi lolos begitu saja. Analisis inter-prosedural yang lebih dalam yang *benar-benar* menangkapnya sudah lama terkunci di dalam alat proprietary.
+- **Agen keamanan LLM** menemukan apa yang terlewat oleh pencocok pola, tetapi mereka membaca ulang kode Anda pada setiap eksekusi. Token menumpuk dengan setiap file, setiap commit, setiap build CI — dan model probabilistik tetap tidak dapat menjanjikan bahwa semuanya tertangkap.
 
-OpenTaint gir deg dybden til en LLM-agent til prisen av en statisk analysator:
+OpenTaint memberi Anda kedalaman agen LLM dengan biaya analisis statis:
 
-- **Finn det AST-mønstergjenkjennere overser.** En formell inter-prosedyrell dataflytmotor sporer upålitelige data på tvers av funksjonsgrenser, persistenslag, aliaser og asynkron kode.
-- **Betal for modellen én gang, ikke ved hver skanning.** La en agent destillere et enkelt funn til en taint-regel. Den deterministiske motoren spiller deretter regelen om igjen over hele kodebasen — og hver commit etterpå — på minutter med CPU, helt uten tokenkostnad.
-- **Åpen kildekode, alt inkludert.** Motor, regler og CI-integrasjoner kommer som én stakk under Apache 2.0 og MIT.
+- **Temukan apa yang terlewat oleh pencocok pola AST.** Mesin aliran data inter-prosedural formal melacak data tidak tepercaya melintasi batas fungsi, lapisan persistensi, alias, dan kode asinkron.
+- **Bayar model sekali, bukan pada setiap pemindaian.** Biarkan agen menyuling satu temuan menjadi aturan taint. Mesin deterministik kemudian menerapkan kembali aturan itu ke seluruh codebase — dan setiap commit setelahnya — dalam hitungan menit CPU, tanpa biaya token.
+- **Sumber terbuka, lengkap.** Mesin, aturan, dan integrasi CI hadir sebagai satu stack di bawah Apache 2.0 dan MIT.
 
-## Hurtigstart
+## Mulai cepat
 
-**Installasjonsskript (Linux/macOS)**
+**Skrip instalasi (Linux/macOS)**
 ```
 curl -fsSL https://opentaint.org/install.sh | bash
 ```
 
-**Installer via Homebrew (Linux/macOS):**
+**Instal via Homebrew (Linux/macOS):**
 ```bash
 brew install --cask seqra/tap/opentaint
 ```
 
-**Installasjonsskript (Windows PowerShell)**
+**Skrip instalasi (Windows PowerShell)**
 ```
 irm https://opentaint.org/install.ps1 | iex
 ```
 
-**Installer via npm (Linux/macOS/Windows):**
+**Instal via npm (Linux/macOS/Windows):**
 ```bash
 npm install -g @seqra/opentaint
 ```
 
-**Eller kjør umiddelbart med npx — ingen installasjon nødvendig (krever Node.js):**
+**Atau jalankan langsung dengan npx — tanpa instalasi (memerlukan Node.js):**
 ```bash
 npx @seqra/opentaint scan
 ```
 
-**Skann prosjektet ditt:**
+**Pindai proyek Anda:**
 ```bash
 opentaint scan
 ```
 
-**Eller bruk Docker:**
+**Atau gunakan Docker:**
 ```bash
 docker run --rm -v $(pwd):/project -v $(pwd):/output \
   ghcr.io/seqra/opentaint:latest \
   opentaint scan --output /output/results.sarif /project
 ```
 
-For flere alternativer, se [Installasjon](../../docs/README.md#installation) og [Bruk](../../docs/README.md#usage).
+Untuk opsi lainnya, lihat [Instalasi](../../docs/README.md#installation) dan [Penggunaan](../../docs/README.md#usage).
 
 ---
 
-## Arbeidsflyter for AI-agenter
+## Alur kerja agen AI
 
-OpenTaint inkluderer agentferdigheter som gjør statisk analyse om til en helhetlig arbeidsflyt for applikasjonssikkerhet. Installer dem med:
+OpenTaint menyertakan keterampilan agen yang mengubah analisis statis menjadi alur kerja keamanan aplikasi end-to-end. Instal dengan:
 
 ```bash
 npx skills add https://github.com/seqra/opentaint
 ```
 
-Ferdigheten `appsec-agent` orkestrerer en fullstendig prosjektvurdering: bygg prosjektet, kjør OpenTaint, kartlegg angrepsflaten, legg til målrettede regler, modeller manglende dataflyter i biblioteker, triager funn, og generer eventuelt dynamiske proof-of-concept-sjekker for bekreftede sårbarheter.
+Keterampilan `appsec-agent` mengorkestrasi penilaian proyek lengkap: membangun proyek, menjalankan OpenTaint, menemukan permukaan serangan, menambahkan aturan tertarget, memodelkan aliran data pustaka yang hilang, melakukan triage temuan, dan opsional menghasilkan pemeriksaan proof-of-concept dinamis untuk kerentanan yang terkonfirmasi.
 
-De inkluderte ferdighetene dekker den vanlige sikkerhetsanalysesyklusen:
+Keterampilan yang disertakan mencakup siklus analisis keamanan umum:
 
-- **Skanning og triagering:** `build-project`, `run-scan`, `analyze-findings`, `generate-poc`
-- **Utvidet dekning:** `triage-dependencies`, `discover-attack-surface`, `create-test-project`, `create-rule`, `assemble-lib-rules`
-- **Dataflytmodellering:** `analyze-external-methods`, `create-pass-through-approximation`, `create-dataflow-approximation`, `debug-rule`, `report-analyzer-issue`
+- **Pemindaian dan triage:** `build-project`, `run-scan`, `analyze-findings`, `generate-poc`
+- **Perluasan cakupan:** `triage-dependencies`, `discover-attack-surface`, `create-test-project`, `create-rule`, `assemble-lib-rules`
+- **Pemodelan aliran data:** `analyze-external-methods`, `create-pass-through-approximation`, `create-dataflow-approximation`, `debug-rule`, `report-analyzer-issue`
 
 ---
 
-## Dokumentasjon
+## Dokumentasi
 
-Fullstendige guider — installasjon, bruk, konfigurasjon, CI/CD-integrasjon: **[Dokumentasjon](../../docs/README.md)**.
+Panduan lengkap — instalasi, penggunaan, konfigurasi, integrasi CI/CD: **[Dokumentasi](../../docs/README.md)**.
 
-## Støtte
+## Dukungan
 
-- **Problemer:** [GitHub Issues](https://github.com/seqra/opentaint/issues)
-- **Fellesskap:** [Discord](https://discord.gg/6BXDfbP4p9)
-- **E-post:** [seqradev@gmail.com](mailto:seqradev@gmail.com)
+- **Masalah:** [GitHub Issues](https://github.com/seqra/opentaint/issues)
+- **Komunitas:** [Discord](https://discord.gg/6BXDfbP4p9)
+- **Email:** [seqradev@gmail.com](mailto:seqradev@gmail.com)
 
-## Stjernehistorikk
+## Riwayat bintang
 
 <a href="https://www.star-history.com/#seqra/opentaint&Date">
   <picture>
@@ -199,6 +199,6 @@ Fullstendige guider — installasjon, bruk, konfigurasjon, CI/CD-integrasjon: **
   </picture>
 </a>
 
-## Lisens
+## Lisensi
 
-[Kjerneanalysemotoren](../../core/) er utgitt under [Apache 2.0-lisensen](../../LICENSE.md). [CLI](../../cli/), [GitHub Action](../../github/), [GitLab CI-malen](../../gitlab/) og [reglene](../../rules/) er utgitt under [MIT-lisensen](../../cli/LICENSE).
+[Mesin analisis inti](../../core/) dirilis di bawah [Lisensi Apache 2.0](../../LICENSE.md). [CLI](../../cli/), [GitHub Action](../../github/), [template GitLab CI](../../gitlab/), dan [aturan](../../rules/) dirilis di bawah [Lisensi MIT](../../cli/LICENSE).
